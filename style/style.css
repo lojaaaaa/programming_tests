@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: 400;
+    background-color: rgb(135, 117, 212);
+}
+
+
+.wrapper {
+    
+}
+.quiz {
+}
+.quiz__container {
+    max-width: 630px;
+    margin: auto;
+    padding: 0 15px;
+    padding-top: 100px;
+}
+.quiz__content {
+
+    padding: 25px;
+    border-radius: 7px;
+}
+.quiz__title {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+.quiz__button {
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    padding: 15px 25px;
+    background-color: rgb(78, 78, 78);
+    border-radius: 5px;
+}
+
+.hidden{
+    display: none;
+}
+
+.questions__item-question, .result__item-question{
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.questions{
+    margin-bottom: 45px;
+}
+.questions__item-answers li, .result__item-answeers li{
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.answer--invalid{
+    color: rgb(238, 98, 98);
+}
+.answer--valid{
+    color: rgb(123, 244, 143);
+}
+.quiz__controls{
+    display: flex;
+    justify-content: center;
+}
+.quiz__indicator{
+    font-weight: 300;
+    font-size: 24px;
+}
+.result__item{
+    margin-bottom: 45px;
+}
+.result__item-answers li{
+    margin-bottom: 15px;
+}
+
+
+
+.quiz__answer-input{
+    position: absolute;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.quiz__answer-custom{
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(207, 206, 206);
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: text-top;
+    margin-right: 5px;
+}
+.quiz__answer-custom::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    background-color: rgba(78, 78, 78, .5);
+    border-radius: 50%;
+    transition: all .2s;
+}
+.quiz__answer-input:checked + .quiz__answer-custom::before{
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+.quiz__btn-css{
+    color: white;
+    cursor: pointer;
+    padding: 15px 35px;
+    background-color: rgba(69, 41, 192, 0.3);
+    border: 0;
+    border-radius: 5px;
+}
+
+.quiz__btn-restart{
+    margin-right: 10px;
+}
