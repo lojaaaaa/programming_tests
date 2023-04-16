@@ -5,112 +5,197 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
-    <title>testsAboutProgramming</title>
+    <title>Главная страница</title>
 </head>
 <body>
     
-       <div class="wrapper">
-        <section class="quiz">
-            <div class="quiz__container">
-                <!-- Основной блок -->
-                <div class="quiz__main">
-                    <div class="quiz__title" id="title">Выберите желаемый тест</div>
-                    <!-- Блок с самими тестами -->
-                    <div class="quiz__tests">
-
-                        <!-- Первый тест -->
-                        <div class="quiz__test quiz__test-css">
-                            <!-- Контент теста -->
-                            <div class="quiz__content hidden">
-                                <div class="quiz__indicator"></div>
-                                <div class="quiz__cross">&#10006</div>
-                                <div class="questions">
-                                    <div class="questions__item">
-                                        <div class="questions__item-question"></div>
-                                        <ul class="questions__item-answers">
-                                        </ul>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container container">
+                <a href="" class="nav__logo">ProgrammingTests</a>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__list-item"><a href="/index.html" class="nav__list-link active">Главная страница</a></li>
+                        <li class="nav__list-item"><a href="https://github.com/lojaaaaa" class="nav__list-link" target="_blank">FAQ</a></li>
+                        <li class="nav__list-item"><a href="https://github.com/lojaaaaa" class="nav__list-link" target="_blank">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <section class="quiz">
+                <div class="quiz__container">
+                    <!-- Основной блок -->
+                    <div class="quiz__main">
+                        <div class="quiz__title" id="title">Выберите желаемый тест</div>
+                        <!-- Блок с самими тестами -->
+                        <div class="quiz__tests">
+    
+                            <!-- Первый тест -->
+                            <div class="quiz__test quiz__test-css">
+                                <!-- Контент теста -->
+                                <div class="quiz__content hidden">
+                                    <div class="quiz__indicator"></div>
+                                    <div class="quiz__cross">&#10006</div>
+                                    <div class="questions">
+                                        <div class="questions__item">
+                                            <div class="questions__item-question"></div>
+                                            <ul class="questions__item-answers">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="result hidden" id="results">
+                                        <div class="result__item">
+                                            <div class="result__item-question"></div>
+                                            <ul class="result__item-answers">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="quiz__controls">
+                                        <button class="quiz__btn-next quiz__button" id="btn-next" disabled>Далее</button>
+                                        <button class="quiz__btn-restart quiz__button hidden" id="btn-restart">Заново</button>
+                                        <button class="quiz__btn-exit quiz__button hidden" id="btn-exit">Тесты</button>
                                     </div>
                                 </div>
-                                <div class="result hidden" id="results">
-                                    <div class="result__item">
-                                        <div class="result__item-question"></div>
-                                        <ul class="result__item-answers">
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="quiz__controls">
-                                    <button class="quiz__btn-next quiz__button" id="btn-next" disabled>Далее</button>
-                                    <button class="quiz__btn-restart quiz__button hidden" id="btn-restart">Заново</button>
-                                    <button class="quiz__btn-exit quiz__button hidden" id="btn-exit">Вернуться к другим тестам</button>
-                                </div>
+                                <!-- Кнопка для запуска теста -->
+                                <button class="quiz__btn">Тест на знание CSS</button>
                             </div>
-                            <!-- Кнопка для запуска теста -->
-                            <button class="quiz__btn">Тест на знание css</button>
-                        </div>
-
-                        <!--  -->
-        
-                        <!-- Второй тест -->
-                        <div class="quiz__test quiz__test-html">
-                            <!-- Контент теста -->
-                            <div class="quiz__content hidden">
-                                <div class="quiz__indicator" id="indicator"></div>
-                                <div class="quiz__cross">&#10006</div>
-                                <div class="questions" id="questions">
-                                    <div class="questions__item">
-                                        <div class="questions__item-question">Вопрос 1</div>
-                                        <ul class="questions__item-answers">
-                                            <li>
-                                                <label for="">
-                                                    <input type="radio" name="q1">
-                                                    <p class="">отве1</p>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label for="">
-                                                    <input type="radio" name="q1">
-                                                    <p class="">отве2</p>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label for="">
-                                                    <input type="radio" name="q1">
-                                                    <p class="">отве3</p>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label for="">
-                                                    <input type="radio" name="q1">
-                                                    <p class="">отве4</p>
-                                                </label>
-                                            </li>
-                                        </ul>
+    
+                            <!--  -->
+            
+                            <!-- Второй тест -->
+                            <div class="quiz__test quiz__test-html">
+                                <!-- Контент теста -->
+                                <div class="quiz__content hidden">
+                                    <div class="quiz__indicator" id="indicator"></div>
+                                    <div class="quiz__cross">&#10006</div>
+                                    <div class="questions" id="questions">
+                                        <div class="questions__item">
+                                            <div class="questions__item-question">Вопрос 1</div>
+                                            <ul class="questions__item-answers">
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве1</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве2</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве3</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве4</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="result hidden" id="results">
+                                        <div class="result__item">
+                                            <div class="result__item-question">Вопрос 1</div>
+                                            <ul class="result__item-answers">
+                                                <li>jndrn1</li>
+                                                <li>dfdfdf</li>
+                                                <li></li>
+                                                <li></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="quiz__controls">
+                                        <button class="quiz__btn-next quiz__button" id="btn-next" disabled>Далее</button>
+                                        <button class="quiz__btn-restart quiz__button hidden" id="btn-restart">Заново</button>
+                                        <button class="quiz__btn-exit quiz__button hidden" id="btn-exit">Тесты</button>
                                     </div>
                                 </div>
-                                <div class="result hidden" id="results">
-                                    <div class="result__item">
-                                        <div class="result__item-question">Вопрос 1</div>
-                                        <ul class="result__item-answers">
-                                            <li>jndrn1</li>
-                                            <li>dfdfdf</li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="quiz__controls">
-                                    <button class="quiz__btn-next quiz__button" id="btn-next" disabled>Далее</button>
-                                    <button class="quiz__btn-restart quiz__button hidden" id="btn-restart">Заново</button>
-                                    <button class="quiz__btn-exit quiz__button hidden" id="btn-exit">Вернуться к другим тестам</button>
-                                </div>
+                                <!-- Кнопка для запуска теста -->
+                                <button class="quiz__btn">Тест на знание HTML</button>
                             </div>
-                            <!-- Кнопка для запуска теста -->
-                            <button class="quiz__btn">Тест на знание html</button>
+    
+                            <!--  -->
+            
+                            <!-- Третий тест -->
+                            <div class="quiz__test quiz__test-js">
+                                <!-- Контент теста -->
+                                <div class="quiz__content hidden">
+                                    <div class="quiz__indicator" id="indicator"></div>
+                                    <div class="quiz__cross">&#10006</div>
+                                    <div class="questions" id="questions">
+                                        <div class="questions__item">
+                                            <div class="questions__item-question">Вопрос 1</div>
+                                            <ul class="questions__item-answers">
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве1</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве2</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве3</p>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label for="">
+                                                        <input type="radio" name="q1">
+                                                        <p class="">отве4</p>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="result hidden" id="results">
+                                        <div class="result__item">
+                                            <div class="result__item-question">Вопрос 1</div>
+                                            <ul class="result__item-answers">
+                                                <li>jndrn1</li>
+                                                <li>dfdfdf</li>
+                                                <li></li>
+                                                <li></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="quiz__controls">
+                                        <button class="quiz__btn-next quiz__button" id="btn-next" disabled>Далее</button>
+                                        <button class="quiz__btn-restart quiz__button hidden" id="btn-restart">Заново</button>
+                                        <button class="quiz__btn-exit quiz__button hidden" id="btn-exit">Тесты</button>
+                                    </div>
+                                </div>
+                                <!-- Кнопка для запуска теста -->
+                                <button class="quiz__btn">Тест на знание JS</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
+        </main>
+
+
+        <footer class="footer">
+            <div class="footer__container container">
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__list-item"><a href="https://github.com/lojaaaaa" class="nav__list-link" target="_blank">Здесь может быть ваша реклама!</a></li>
+                    </ul>
+                </nav>
             </div>
-        </section>
+        </footer>
     </div>
 
 
