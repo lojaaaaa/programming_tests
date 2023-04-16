@@ -1,3 +1,7 @@
+/*
+* Обнуление
+*/
+
 *{
     margin: 0;
     padding: 0;
@@ -18,12 +22,14 @@ body{
     background-color: rgb(135, 117, 212);
 }
 
+.hidden{
+    display: none;
+}
 
-.wrapper {
-    
-}
-.quiz {
-}
+/*
+* Quiz
+*/
+
 .quiz__container {
     max-width: 630px;
     margin: auto;
@@ -31,7 +37,7 @@ body{
     padding-top: 100px;
 }
 .quiz__content {
-
+    position: relative;
     padding: 25px;
     border-radius: 7px;
 }
@@ -49,9 +55,11 @@ body{
     background-color: rgb(78, 78, 78);
     border-radius: 5px;
 }
-
-.hidden{
-    display: none;
+.quiz__btn, .quiz__button {
+    transition: all .2s;
+}
+.quiz__btn:hover, .quiz__button:hover{
+    opacity: .7;
 }
 
 .questions__item-question, .result__item-question{
@@ -66,27 +74,7 @@ body{
     margin-bottom: 25px;
     font-size: 18px;
     line-height: 1.5;
-}
-
-.answer--invalid{
-    color: rgb(238, 98, 98);
-}
-.answer--valid{
-    color: rgb(123, 244, 143);
-}
-.quiz__controls{
-    display: flex;
-    justify-content: center;
-}
-.quiz__indicator{
-    font-weight: 300;
-    font-size: 24px;
-}
-.result__item{
-    margin-bottom: 45px;
-}
-.result__item-answers li{
-    margin-bottom: 15px;
+    
 }
 
 
@@ -108,6 +96,7 @@ body{
     border-radius: 50%;
     vertical-align: text-top;
     margin-right: 5px;
+    cursor: pointer;
 }
 .quiz__answer-custom::before{
     content: '';
@@ -127,9 +116,11 @@ body{
 }
 
 
-.quiz__btn-css{
+.quiz__btn{
+    width: 100%;
     color: white;
     cursor: pointer;
+    font-size: 18px;
     padding: 15px 35px;
     background-color: rgba(69, 41, 192, 0.3);
     border: 0;
@@ -138,4 +129,59 @@ body{
 
 .quiz__btn-restart{
     margin-right: 10px;
+}
+
+.quiz__tests{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.quiz__controls{
+    display: flex;
+    justify-content: center;
+}
+.quiz__indicator{
+    position: absolute;
+    left: 25px;
+    top: 0px;
+    font-weight: 300;
+    font-size: 24px;
+}
+.quiz__cross{
+    position: absolute;
+    cursor: pointer;
+    right: 25px;
+    top: 0px;
+    font-size: 28px;
+}
+.answer--invalid{
+    color: rgb(238, 98, 98);
+}
+.answer--valid{
+    color: rgb(123, 244, 143);
+}
+
+.result__item{
+    margin-bottom: 45px;
+}
+.result__item-answers li{
+    margin-bottom: 15px;
+}
+
+
+
+@media(max-width: 600px){
+    .questions__item-question, .result__item-question{
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 24px;
+    }
+    .questions__item{
+        padding-top: 35px;
+    }
+    .quiz__container{
+        padding-top: 100px;
+    }
 }
