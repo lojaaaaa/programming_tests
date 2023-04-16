@@ -1,5 +1,4 @@
-
-// Структура для хранения ответов и вопросов
+// Структура для хранения ответов и вопросов 1 теста
 const DATA = [
     {
         question: 'Что такое CSS спрайты',
@@ -75,154 +74,375 @@ const DATA = [
                 correct: false,
             },
         ]
+    },
+    {
+        question: 'Что такое инлайновые стили?',
+        answers: [
+            {
+                id: '1',
+                value: 'стили прямо в css',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'стили у которых прописано свойство inline',
+                correct: false,
+            },
+            {
+                id: '3',
+                value: 'стили прямо в html',
+                correct: true,
+            },
+            {
+                id: '4',
+                value: 'таких стилей не существует',
+                correct: false,
+            },
+        ]
+    },
+    {
+        question: 'При изменении каких свойств браузер затратит больше всего ресурсов?',
+        answers: [
+            {
+                id: '1',
+                value: 'border-radius',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'width',
+                correct: false,
+            },
+            {
+                id: '3',
+                value: 'height',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'left/top/right/bottom',
+                correct: true,
+            },
+        ]
+    },
+    {
+        question: 'CSS ',
+        answers: [
+            {
+                id: '1',
+                value: 'Common Style Sheets',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'Central Style Sheets',
+                correct: false,
+            },
+            {
+                id: '3',
+                value: 'Control Style Sheets',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'Cascading Style Sheets',
+                correct: true,
+            },
+        ]
     }
 ]
+// Структура для хранения ответов и вопросов 2 теста
+const DATA_2 = [
+    {
+        question: 'Какие единицы измерения могут использоваться для атрибута ширины?',
+        answers: [
+            {
+                id: '1',
+                value: 'Пиксели и %',
+                correct: true,
+            },
+            {
+                id: '2',
+                value: 'Миллиметры и сантиметры',
+                correct: false,
+            },
+            {
+                id: '3',
+                value: 'Только пиксели',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'Пиксели и миллиметры',
+                correct: false,
+            },
+        ]
+    },
+    {
+        question: 'Расшифруйте аббревиатуру HTML',
+        answers: [
+            {
+                id: '1',
+                value: 'HeadText Modulation Language',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'HyperText Markup Language',
+                correct: true,
+            },
+            {
+                id: '3',
+                value: 'HeadingText Mode Language',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'HeadText Markup Language',
+                correct: false,
+            },
+        ]
+    },
+    {
+        question: 'Какое значение атрибута type указывается для поля-галочки в форме?',
+        answers: [
+            {
+                id: '1',
+                value: 'radio',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'checkbox',
+                correct: true,
+            },
+            {
+                id: '3',
+                value: 'name',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'id',
+                correct: false,
+            },
+        ]
+    }
+]
+// Структура для хранения тестов
+const DATAll= [DATA, DATA_2]
 
-//
+
+// Переменная для хранения результата
 let result = {
 }
 
 // Объявление переменных
-const content = document.querySelector('#content')
-const quiz = document.querySelector('#quiz')
-const questions = document.querySelector('#questions')
-const indicator = document.querySelector('#indicator')
-const results = document.querySelector('#results')
-const btnNext = document.querySelector('#btn-next')
-const btnRestart = document.querySelector('#btn-restart')
-const btnExit = document.querySelector('#btn-exit')
+const content = document.querySelectorAll('.quiz__content')
+const quiz = document.querySelectorAll('.quiz__test')
 
-// Генерация вопросов
-const renderQuestions = (index) => {
-    renderIndicator(index + 1)
+//
+const questions = document.querySelectorAll('.questions')
+const indicator = document.querySelectorAll('.quiz__indicator')
+const results = document.querySelectorAll('.result')
 
-    questions.dataset.currentIndex = index
+const btnNext = document.querySelectorAll('.quiz__btn-next')
+const btnRestart = document.querySelectorAll('.quiz__btn-restart')
+const btnExit = document.querySelectorAll('.quiz__btn-exit')
+const btnCross = document.querySelectorAll('.quiz__cross')
+
+const buttonsSelection  = document.querySelectorAll('.quiz__btn')
+
+
+//Выбор необходимого теста
+buttonsSelection.forEach(function(buttonSelection, buttonSelectionIndex){
+    buttonSelection.addEventListener('click', e => {
+        const currentbuttonSelection = buttonSelection
+        const currentSelectionIndex = buttonSelectionIndex
+
+        buttonsSelection.forEach((buttonSelection, buttonSelectionIndex)=>{
+            buttonSelection.classList.add('hidden')
+        })
+        document.querySelector('#title').classList.add('hidden')
+
+
+        const choiceOfTest = document.querySelectorAll('.quiz__test')
+        choiceOfTest[currentSelectionIndex].addEventListener('click', ()=>{
+            choiceOfTest[currentSelectionIndex].firstElementChild.classList.remove('hidden')
+        })
+        questions[currentSelectionIndex].classList.remove('hidden') 
+        indicator[currentSelectionIndex].classList.remove('hidden') 
+        btnNext[currentSelectionIndex].classList.remove('hidden')
+
+
+        renderTest(currentSelectionIndex)
+    })
     
 
-    renderAnswers = () => DATA[index].answers.map((answer) => 
-        `
-            <li>
-                <label for="q${answer.id}">
-                    <input class="quiz__answer-input" type="radio" name=${index} value=${answer.id} id="q${answer.id}">
-                    <span class="quiz__answer-custom"></span>
-                    ${answer.value}
-                </label>
-            </li>
-        `
-    )
-    .join('')
+})
 
-    questions.innerHTML = `
-        <div class="questions__item">
-        <div class="questions__item-question">${DATA[index].question}</div>
-        <ul class="questions__item-answers">
-            ${renderAnswers()}
-        </ul>
-    </div>
-    `
-}
+// Генерация теста
+function renderTest(selectionIndex){
 
-const renderResults = () => {
-    let content = ''
+    // Присваиваем тест
+    const DATA = DATAll[selectionIndex]
 
-    const getClassname = (answer, questionIndex) =>{
-        let classname = ''
+    // Генерация вопросов
+    const renderQuestions = (index) => {
+        renderIndicator(index + 1)
+        questions[selectionIndex].dataset.currentIndex = index
+        
+        // Генерация ответов
+        renderAnswers = () => DATA[index].answers.map((answer) => 
+            `
+                <li>
+                    <label for="q${answer.id}">
+                        <input class="quiz__answer-input" type="radio" name=${index} value=${answer.id} id="q${answer.id}">
+                        <span class="quiz__answer-custom"></span>
+                        ${answer.value}
+                    </label>
+                </li>
+            `
+        )
+        .join('')
 
-        if(!answer.correct && answer.id === result[questionIndex]){
-            classname = 'answer--invalid'
-        }else if(answer.correct){
-            classname = 'answer--valid'
+        // Отображение ответов
+        questions[selectionIndex].innerHTML = `
+            <div class="questions__item">
+            <div class="questions__item-question">${DATA[index].question}</div>
+            <ul class="questions__item-answers">
+                ${renderAnswers()}
+            </ul>
+        </div>`
+    }
+    
+    // Генерация результатов
+    const renderResults = () => {
+        let content = ''
+
+        // Проверка корректности ответов
+        const getClassname = (answer, questionIndex) =>{
+            let classname = ''
+            if(!answer.correct && answer.id === result[questionIndex]){
+                classname = 'answer--invalid'
+            }else if(answer.correct){
+                classname = 'answer--valid'
+            }
+            return classname
         }
 
-        return classname
+        // Функция для подставления ответов
+        const getAnswers = (questionIndex) => DATA[questionIndex].answers.map((answer) => 
+        `<li class="${getClassname(answer, questionIndex)}">${answer.value}</li>`)
+        .join('')
+
+        // Запись ответов переменную
+        DATA.forEach(function(question, questionIndex){
+            content += `
+                <div class="result__item">
+                    <div class="result__item-question">${question.question}</div>
+                    <ul class="result__item-answers">
+                        ${getAnswers (questionIndex)}
+                    </ul>
+                </div>
+            `
+        })
+
+        // Отображение результатов
+        results[selectionIndex].innerHTML = content
     }
 
-    const getAnswers = (questionIndex) => DATA[questionIndex].answers
-    .map((answer) => `<li class="${getClassname(answer, questionIndex)}">${answer.value}</li>`)
-    .join('')
-
-    DATA.forEach(function(question, questionIndex){
-        content += `
-            <div class="result__item">
-                <div class="result__item-question">${question.question}</div>
-                <ul class="result__item-answers">
-                    ${getAnswers (questionIndex)}
-                </ul>
-            </div>
-        `
+    // Генерация индикатора
+    const renderIndicator = (currentIndex) => {
+        indicator[selectionIndex].innerHTML = `${currentIndex}/${DATA.length}`
+    }
+    // Получение значения инпута
+    quiz[selectionIndex].addEventListener('change', e =>{
+        if (e.target.classList.contains('quiz__answer-input')){
+            console.log('input')
+            console.log(e.target)
+            console.log('\n')
+            result[e.target.name] = e.target.value
+            btnNext[selectionIndex].disabled = false
+            
+        }
     })
-    results.innerHTML = content
-}
-
-const renderIndicator = (currentIndex) => {
-    indicator.innerHTML = `${currentIndex}/${DATA.length}`
-}
 
 
-quiz.addEventListener('change', e =>{
-    if (e.target.classList.contains('quiz__answer-input')){
-        console.log('input')
-        result[e.target.name] = e.target.value
-        btnNext.disabled = false
-    }
-})
-
-// Обработка клика
-quiz.addEventListener('click', e => {
-    if (e.target.classList.contains('quiz__btn-next')){
-        console.log('Далее')
+    // Обработка клика 
+    quiz[selectionIndex].addEventListener('click', e => {
         
-        const nextQuistionIndex = +questions.dataset.currentIndex + 1
-        
-        if(DATA.length === nextQuistionIndex ){
-            questions.classList.add('hidden') 
-            indicator.classList.add('hidden') 
-            results.classList.remove('hidden')
-            btnNext.classList.add('hidden')
-            btnRestart.classList.remove('hidden')
-            btnExit.classList.remove('hidden')
-            renderResults()
-        }else{
-            renderQuestions(nextQuistionIndex)
+
+        // Кнопка далее
+        if (e.target.classList.contains('quiz__btn-next')){
+            const nextQuistionIndex = +questions[selectionIndex].dataset.currentIndex + 1
+            
+            if(DATA.length === nextQuistionIndex ){
+                questions[selectionIndex].classList.add('hidden') 
+                indicator[selectionIndex].classList.add('hidden') 
+                results[selectionIndex].classList.remove('hidden')
+                btnNext[selectionIndex].classList.add('hidden')
+                btnRestart[selectionIndex].classList.remove('hidden')
+                btnExit[selectionIndex].classList.remove('hidden')
+                btnCross[selectionIndex].classList.add('hidden')
+                renderResults()
+            }else{
+                renderQuestions(nextQuistionIndex)
+            }
+            btnNext[selectionIndex].disabled = true
         }
-        btnNext.disabled = true
-    }
 
-    if (e.target.classList.contains('quiz__btn-restart')){
-        results.innerHTML = ''
-        result = {}
-        questions.classList.remove('hidden') 
-        indicator.classList.remove('hidden') 
-        results.classList.add('hidden')
-        btnNext.classList.remove('hidden')
-        btnRestart.classList.add('hidden')
-        btnExit.classList.add('hidden')
-        renderQuestions(0)
-    }
-    if (e.target.classList.contains('quiz__btn-exit')){
-        results.innerHTML = ''
-        result = {}
-        questions.classList.remove('hidden') 
-        indicator.classList.remove('hidden') 
-        results.classList.add('hidden')
-        btnNext.classList.remove('hidden')
-        btnRestart.classList.add('hidden')
-        btnExit.classList.add('hidden')
-        choiceOfTest.firstElementChild.classList.add('hidden')
-        choiceOfTest.lastElementChild.classList.remove('hidden')
-        document.querySelector('#title').classList.remove('hidden')
-        renderQuestions(0)
-    }
-})
+        // Кнопка Заново
+        if (e.target.classList.contains('quiz__btn-restart')){
+            results[selectionIndex].innerHTML = ''
+            result = {}
+            questions[selectionIndex].classList.remove('hidden') 
+            indicator[selectionIndex].classList.remove('hidden') 
+            results[selectionIndex].classList.add('hidden')
+            btnNext[selectionIndex].classList.remove('hidden')
+            btnRestart[selectionIndex].classList.add('hidden')
+            btnExit[selectionIndex].classList.add('hidden')
+            btnCross[selectionIndex].classList.remove('hidden')
+            renderQuestions(0)
+        }
+
+        // Кнопка Вернуться к тестам
+        if (e.target.classList.contains('quiz__btn-exit')){
+            // results[selectionIndex].innerHTML = ''
+            // result = {}
+            // questions[selectionIndex].classList.remove('hidden') 
+            // indicator[selectionIndex].classList.remove('hidden') 
+            // results[selectionIndex].classList.add('hidden')
+            // btnNext[selectionIndex].classList.remove('hidden')
+            // btnRestart[selectionIndex].classList.add('hidden')
+            // btnExit[selectionIndex].classList.add('hidden')
+            // renderQuestions(0)
+
+            // document.querySelector('#title').classList.remove('hidden')
+            // document.querySelectorAll('.quiz__answer-input').forEach((answerInput) =>{
+            //     answerInput.id = null
+            //     answerInput.classList.remove('quiz__answer-input')
+            // })
+            // buttonsSelection.forEach((buttonSelection, buttonSelectionIndex)=>{
+            //     buttonSelection.removeAttribute('data-active')
+            //     buttonSelection.classList.remove('hidden')
+            // })
+            // document.querySelectorAll('.quiz__content').forEach((item) =>{
+            //     item.classList.add('hidden')
+            // })
+            location.reload()
+        }
+        if (e.target.classList.contains('quiz__cross')){
+            location.reload()
+        }
+
+    })
+    
+    renderQuestions(0)
+
+}
 
 
-renderQuestions(0)
 
 
-const choiceOfTest = document.querySelector('.quiz__test')
-choiceOfTest.addEventListener('click', ()=>{
-    choiceOfTest.firstElementChild.classList.remove('hidden')
-    choiceOfTest.lastElementChild.classList.add('hidden')
-    document.querySelector('#title').classList.add('hidden')
-})
 
