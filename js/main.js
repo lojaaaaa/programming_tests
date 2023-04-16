@@ -26,31 +26,6 @@ const DATA = [
         ]
     },
     {
-        question: 'Что такое DOM?',
-        answers: [
-            {
-                id: '1',
-                value: 'библиотека в JavaScript',
-                correct: false,
-            },
-            {
-                id: '2',
-                value: 'программный интерфейс к HTML-документам',
-                correct: true,
-            },
-            {
-                id: '3',
-                value: 'Document Oriented Model',
-                correct: false,
-            },
-            {
-                id: '4',
-                value: 'ничего из приведенных ответов',
-                correct: false,
-            },
-        ]
-    },
-    {
         question: 'Что такое CORS?',
         answers: [
             {
@@ -229,8 +204,111 @@ const DATA_2 = [
         ]
     }
 ]
+// Структура для хранения ответов и вопросов 3 теста
+const DATA_3 = [
+    {
+        question: 'В чем отличие между локальной и глобальной переменной?',
+        answers: [
+            {
+                id: '1',
+                value: 'глобальные видны повсюду, локальные только в функциях',
+                correct: true,
+            },
+            {
+                id: '2',
+                value: 'локальные можно переопределять, глобальные нельзя',
+                correct: false,
+            },
+            {
+                id: '3',
+                value: 'глобальные можно переопределять, локальные нельзя',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'отличий нет',
+                correct: false,
+            },
+        ]
+    },
+    {
+        question: 'JSON - это...',
+        answers: [
+            {
+                id: '1',
+                value: 'JavaScript Over Network',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'JavaScript Object Notation',
+                correct: true,
+            },
+            {
+                id: '3',
+                value: 'JavaScript Object Network',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'ничего из этого',
+                correct: false,
+            },
+        ]
+    },
+    {
+        question: 'Что такое замыкание в JavaScript?',
+        answers: [
+            {
+                id: '1',
+                value: 'способность функции вызывать саму себя',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'способность функции запоминать все переменные',
+                correct: false,
+            },
+            {
+                id: '3',
+                value: 'способность функции запоминать область видимости, в которой эта функция была объявлена',
+                correct: true,
+            },
+            {
+                id: '4',
+                value: 'способность функции запоминать некоторые переменные',
+                correct: false,
+            },
+        ]
+    },
+    {
+        question: 'Что такое DOM?',
+        answers: [
+            {
+                id: '1',
+                value: 'Digital Optical Modulation',
+                correct: false,
+            },
+            {
+                id: '2',
+                value: 'программный интерфейс к HTML-документам',
+                correct: true,
+            },
+            {
+                id: '3',
+                value: 'Document Oriented Model',
+                correct: false,
+            },
+            {
+                id: '4',
+                value: 'ничего из приведенных ответов',
+                correct: false,
+            },
+        ]
+    }
+]
 // Структура для хранения тестов
-const DATAll= [DATA, DATA_2]
+const DATAll= [DATA, DATA_2, DATA_3]
 
 
 // Переменная для хранения результата
@@ -253,6 +331,8 @@ const btnCross = document.querySelectorAll('.quiz__cross')
 
 const buttonsSelection  = document.querySelectorAll('.quiz__btn')
 
+
+console.log(17/3)
 
 //Выбор необходимого теста
 buttonsSelection.forEach(function(buttonSelection, buttonSelectionIndex){
@@ -286,7 +366,7 @@ function renderTest(selectionIndex){
 
     // Присваиваем тест
     const DATA = DATAll[selectionIndex]
-
+    
     // Генерация вопросов
     const renderQuestions = (index) => {
         renderIndicator(index + 1)
@@ -317,8 +397,9 @@ function renderTest(selectionIndex){
     }
     
     // Генерация результатов
-    const renderResults = () => {
-        let content = ''
+    const renderResults = (count) => {
+        let content = `<div class="result__item-count">Результат: ${count}</div>`
+        
 
         // Проверка корректности ответов
         const getClassname = (answer, questionIndex) =>{
@@ -330,6 +411,8 @@ function renderTest(selectionIndex){
             }
             return classname
         }
+
+
 
         // Функция для подставления ответов
         const getAnswers = (questionIndex) => DATA[questionIndex].answers.map((answer) => 
@@ -359,11 +442,11 @@ function renderTest(selectionIndex){
     // Получение значения инпута
     quiz[selectionIndex].addEventListener('change', e =>{
         if (e.target.classList.contains('quiz__answer-input')){
-            console.log('input')
             console.log(e.target)
             console.log('\n')
             result[e.target.name] = e.target.value
             btnNext[selectionIndex].disabled = false
+
             
         }
     })
@@ -385,7 +468,20 @@ function renderTest(selectionIndex){
                 btnRestart[selectionIndex].classList.remove('hidden')
                 btnExit[selectionIndex].classList.remove('hidden')
                 btnCross[selectionIndex].classList.add('hidden')
-                renderResults()
+
+                let count = 0
+                for (let i = 0; i < Object.keys(result).length; i++){
+                    for (let j = 0; j < DATA[i].answers.length; j++){
+                        if (result[i] == DATA[i].answers[j].id && DATA[i].answers[j].correct){
+                            count++
+                        }
+                    }
+                }
+                count = ((count/DATA.length).toFixed(4) * 100) + '%'
+                
+                console.log(count)
+                renderResults(count)
+ 
             }else{
                 renderQuestions(nextQuistionIndex)
             }
