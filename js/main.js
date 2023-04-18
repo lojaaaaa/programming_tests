@@ -354,8 +354,13 @@ buttonsSelection.forEach(function(buttonSelection, buttonSelectionIndex){
         indicator[currentSelectionIndex].classList.remove('hidden') 
         btnNext[currentSelectionIndex].classList.remove('hidden')
 
-
+        document.querySelectorAll('.quiz__test').forEach((item) =>{
+            item.classList.add('hidden')
+        })
+        buttonSelection.parentElement.classList.remove('hidden')
+        document.body.classList.add('purple')
         renderTest(currentSelectionIndex)
+        
     })
     
 
@@ -468,6 +473,7 @@ function renderTest(selectionIndex){
                 btnRestart[selectionIndex].classList.remove('hidden')
                 btnExit[selectionIndex].classList.remove('hidden')
                 btnCross[selectionIndex].classList.add('hidden')
+                
 
                 let count = 0
                 for (let i = 0; i < Object.keys(result).length; i++){
@@ -523,9 +529,7 @@ function renderTest(selectionIndex){
             //     buttonSelection.removeAttribute('data-active')
             //     buttonSelection.classList.remove('hidden')
             // })
-            // document.querySelectorAll('.quiz__content').forEach((item) =>{
-            //     item.classList.add('hidden')
-            // })
+
             location.reload()
         }
         if (e.target.classList.contains('quiz__cross')){
@@ -542,3 +546,13 @@ function renderTest(selectionIndex){
 
 
 
+
+
+const burgerBtn = document.querySelector('#burger-btn')
+const navBody = document.querySelector('#nav')
+burgerBtn.addEventListener('click', function(){
+    burgerBtn.classList.toggle('header__menu-burger--active')
+    navBody.classList.toggle('nav--active')
+    document.body.classList.toggle('lock')
+
+})
